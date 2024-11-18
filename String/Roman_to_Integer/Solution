@@ -1,0 +1,43 @@
+class Solution {
+    public int romanToInt(String s) {
+        char[] ch= s.toCharArray();
+        int n = s.length();
+        int t=0;
+        for(int i=0; i<s.length(); i++){
+            int currval = getValue(s.charAt(i));
+            if(i< n-1 && currval < getValue(s.charAt(i+1))){
+                t -= currval;
+            }
+            else{
+                t +=currval;
+            }
+
+
+        }
+        return t;
+    }
+    private int getValue(char roman){
+        if(roman == 'I'){
+            return 1;
+        }
+        if(roman == 'V'){
+            return 5;
+        }
+        if(roman == 'X'){
+            return 10;
+        }
+        if(roman == 'L'){
+            return 50;
+        }
+        if(roman == 'C'){
+            return 100;
+        }
+        if(roman == 'D'){
+            return 500;
+        }
+        if(roman == 'M'){
+            return 1000;
+        }
+        return 0;
+    }
+}
