@@ -1,0 +1,30 @@
+import java.util.*;
+public class arrayList_Containingmaxwater {
+    //Brute Force
+    public static void main(String[] args){
+        ArrayList<Integer> h = new ArrayList<>();
+            // height = 1,8,6,2,5,4,8,3,7
+        int height = 0;
+        int width = 0;
+        int water =0;
+        h.add(1);
+        h.add(8);
+        h.add(6);
+        h.add(2);
+        h.add(5);
+        h.add(4);
+        h.add(8);
+        h.add(3);
+        h.add(7);
+        int max = Integer.MIN_VALUE;
+        for(int i=0; i<h.size(); i++){
+            for(int j=i+1; j<h.size(); j++){
+                height =Math.min(h.get(i), h.get(j));
+                width = j-i;
+                water = height*width;
+                max = Math.max(max, water);
+            }
+        }
+        System.out.println(max);
+    }
+}
