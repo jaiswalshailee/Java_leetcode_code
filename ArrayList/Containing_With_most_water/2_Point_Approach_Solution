@@ -1,0 +1,48 @@
+import java.sql.SQLOutput;
+import java.util.*;
+public class arrayList_Containingmaxwater {
+
+    public static void main(String[] args){
+        ArrayList<Integer> h = new ArrayList<>();
+            // height = 1,8,6,2,5,4,8,3,7
+        int height = 0;
+        int width = 0;
+        int water =0;
+        h.add(1);
+        h.add(8);
+        h.add(6);
+        h.add(2);
+        h.add(5);
+        h.add(4);
+        h.add(8);
+        h.add(3);
+        h.add(7);
+        int ans = store_Water(h);
+        System.out.println(ans);
+
+
+    }
+
+    //Two pointer approach
+    public static int store_Water(ArrayList<Integer> h){
+        int l =0;
+        int r = h.size()-1;
+        int currwater=0, max=Integer.MIN_VALUE, width=0, height = 0;
+        while(l<r){
+            for(int i=0; i<h.size(); i++){
+                currwater = height * width;
+                height = Math.min(h.get(l), h.get(r));
+                width = r-l;
+                max= Math.max(max, currwater);
+                if(h.get(l)<h.get(r)){
+                    l++;
+                }
+                else{
+                    r--;
+                }
+            }
+
+        }
+        return max;
+    }
+}
