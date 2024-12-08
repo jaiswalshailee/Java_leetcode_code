@@ -1,0 +1,28 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int max=Integer.MIN_VALUE;
+        int l=0;
+        int r = height.length-1;
+        //x axis = 1 cm
+        //y axis ia taken as height[i]
+        // water or area = height * width;
+        //width cal = index2 - index1;
+        //height cal = height arr element;
+        int water =0,w=0;
+        int h=0;
+        while(l<r){
+                h =Math.min(height[l] , height[r]); // height
+                w =r-l;  //width
+                water = h*w;
+                max= Math.max(max, water);
+                 if(height[l]<height[r]){
+                    l++;
+                }
+                else{
+                    r--;                
+                    }
+        }
+        return max;
+       
+    }
+}
