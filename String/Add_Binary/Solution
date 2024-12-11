@@ -1,0 +1,27 @@
+import java.util.*;
+import java.math.BigInteger;
+class Solution {
+    public String addBinary(String a, String b) {
+        int i = a.length() - 1;  // Pointer for the end of string a
+        int j = b.length() - 1;  // Pointer for the end of string b
+        int carry = 0;           // Carry for the addition
+        StringBuilder result = new StringBuilder();
+        while(i>=0 || j>=0 || carry > 0){
+            int sum = carry;
+                        
+            if (i >= 0) {
+                sum += a.charAt(i) - '0';  // Convert char to int (0 or 1)
+                i--;
+            }
+                        
+            if (j >= 0) {
+                sum += b.charAt(j) - '0';  // Convert char to int (0 or 1)
+                j--;
+            }
+            carry = sum / 2;  // Update carry for the next position (either 0 or 1)
+            result.append(sum % 2);  // Append the result bit (either 0 or 1)
+        }
+      return result.reverse().toString();
+
+    }
+}
