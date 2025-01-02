@@ -1,0 +1,28 @@
+class Solution {
+    public int maxScore(String s) {
+        int score = 0, maxscore = 0;
+       for(int i=0; i<s.length();i++){
+            String substr_left = s.substring(0, i+1);
+            String substr_right = s.substring(i+1);
+            //to count zeros in left?
+            if(substr_left.length() !=0 && substr_right.length() !=0){
+            HashMap<Character, Integer> zerocount = new HashMap<>();
+            for(char c : substr_left.toCharArray()){
+                zerocount.put(c, zerocount.getOrDefault(c,0) + 1);
+            }
+            int occur_zero = zerocount.getOrDefault('0', 0);
+
+            //to count ones in right?
+
+            HashMap<Character, Integer> onecount = new HashMap<>();
+            for(char c : substr_right.toCharArray()){
+                onecount.put(c, onecount.getOrDefault(c,0) + 1);
+            }
+            int occur_one = onecount.getOrDefault('1', 0);
+            score = occur_one + occur_zero;
+            maxscore = Math.max(maxscore, score);
+         }
+       }
+       return maxscore;
+    }
+}
