@@ -1,0 +1,32 @@
+class Solution {
+    public int[] vowelStrings(String[] words, int[][] queries) {
+        int n = words.length;
+        int[] prefixSum = new int[n];
+        prefixSum[0] = isVowel(words[0]);
+        for(int i=1; i<n; i++){
+            prefixSum[i] = prefixSum[i-1] + isVowel(words[i]);
+        }
+        int m = queries.length;
+        int[] ans = new int[m];
+        for(int j=0; j<m; j++){
+            int l = queries[j][0];  //jTh qurery with 0th index
+            int r = queries[j][1];  //jth quesry with 1 th index
+            int res = prefixSum[r];
+            if(l!=0){
+                 res -= prefixSum[l-1];
+            }
+            ans[j] = res;
+        }
+      return ans;
+    }
+    public int isVowel(String word){
+        HashSet<Character> vowels = new HashSet<>(Arrays.asList('a', 'e' , 'i' , 'o', 'u'));
+        char first = word.charAt(0);
+        char last = word.charAt(word.length()-1);
+        if(vowels.contains(first) && vowels.contains(last)){
+            return 1;
+        }
+        return 0;
+
+    }
+}
