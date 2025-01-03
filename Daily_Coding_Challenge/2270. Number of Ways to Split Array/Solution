@@ -1,0 +1,21 @@
+class Solution {
+    public int waysToSplitArray(int[] nums) {
+     //prefix sum will be sum of left side elements
+     // total sum - prefix sum = right side elements sum
+     int n = nums.length;
+     long prefixSum = 0;
+     long totalSum = 0;
+     for(int i=0; i<nums.length; i++){
+        totalSum += nums[i];
+     }
+     //now to check the constraints and no of splits
+     int countsplits = 0;
+     for(int i=0; i<=n-2; i++){
+          prefixSum += nums[i];
+        if(prefixSum>=(totalSum-prefixSum)){
+            countsplits++;
+        }
+     }
+     return countsplits;
+    }
+}
