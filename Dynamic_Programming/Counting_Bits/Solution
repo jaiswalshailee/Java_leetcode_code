@@ -1,0 +1,12 @@
+class Solution {
+    public int[] countBits(int n) {
+      int[] nums = new int[n+1];
+      nums[0] = 0;
+       for (int i = 1; i <= n; i++) {
+            nums[i] = nums[i >> 1] + (i & 1); 
+            // Use bitwise operations for efficiency
+            //it gives count of 1's
+        }
+        return nums;
+    }
+}
