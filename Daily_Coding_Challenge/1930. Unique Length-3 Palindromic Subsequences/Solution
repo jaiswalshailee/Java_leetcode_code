@@ -1,0 +1,29 @@
+class Solution {
+    public int countPalindromicSubsequence(String s) {
+       HashSet<Character> SetOf_letters = new HashSet<>();
+       for(Character c : s.toCharArray()){
+            SetOf_letters.add(c);
+       } 
+       int res =0;
+       for(Character letter : SetOf_letters){
+            int i = -1;
+            int j = 0;
+
+            for(int k=0; k<s.length(); k++){
+                if(s.charAt(k) == letter){
+                    if(i == -1){
+                        i = k; // to kept the fisrt occurence of letter
+                    }
+                    j=k; //to kept the last occurence of letter 
+                }
+            }
+            
+            HashSet<Character> between = new HashSet<>();
+            for(int k= i+1; k<j; k++){
+                between.add(s.charAt(k));
+            }
+            res += between.size();
+       }
+       return res;
+    }
+}
