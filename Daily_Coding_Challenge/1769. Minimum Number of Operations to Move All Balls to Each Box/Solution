@@ -1,0 +1,27 @@
+class Solution {
+    public int[] minOperations(String boxes) {
+        int n = boxes.length();
+        int[] answers = new int[n];
+        int cumvalue = 0;
+        int cumvalueSum = 0;
+        //find moves for all left balls to index i
+        for(int i=0; i<n; i++){
+            answers[i] += cumvalueSum;
+
+            cumvalue += boxes.charAt(i) == '0' ? 0 : 1;
+
+            cumvalueSum += cumvalue;
+        }
+        cumvalue = 0;
+        cumvalueSum = 0;
+        //find moves for all right balls to index i
+          for(int i=n-1; i>=0; i--){
+            answers[i] += cumvalueSum;
+
+            cumvalue += boxes.charAt(i) == '0' ? 0 : 1;
+
+            cumvalueSum += cumvalue;
+        }
+        return answers;
+    }
+}
