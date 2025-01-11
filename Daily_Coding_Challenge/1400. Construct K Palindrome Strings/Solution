@@ -1,0 +1,27 @@
+class Solution {
+    public boolean canConstruct(String s, int k) {
+        int count =0;
+        //calculate no of frequencies of each letter in 's'
+        HashMap<Character, Integer> freqMap = new HashMap<>();
+
+        for(Character c : s.toCharArray()){
+           
+                freqMap.put(c, freqMap.getOrDefault(c,0) + 1);
+            
+        }
+        
+        //now check odd frequency of letters should be less than or equal to k
+        //then only it can form palindroms
+        int countOfOddfreq =0;
+        for(Character c : freqMap.keySet()){
+            int num = freqMap.get(c);
+            if(num%2 !=0){
+                 countOfOddfreq++;
+            }
+        }
+        if(k>=countOfOddfreq && k<=s.length()){
+            return true;
+        }
+        return false;
+    }
+}
